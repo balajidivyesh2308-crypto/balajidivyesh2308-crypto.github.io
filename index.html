@@ -1,29 +1,10 @@
 <!DOCTYPE html>
-<!--
-  =====================================================================
-  PERSONAL PORTFOLIO — DIVYESH BALAJI
-  Year 1 Data Science & Artificial Intelligence (DSAI) @ NTU Singapore
-  "If a problem doesn't have an obvious solution, I figure out the path,
-   stay consistent, and get the job done."
-  Live Site: https://balajidivyesh2308-crypto.github.io
-  GitHub:    https://github.com/balajidivyesh2308-crypto
-  =====================================================================
--->
 <html lang="en" class="scroll-smooth dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Divyesh Balaji | Data Science & AI Portfolio</title>
   <meta name="description" content="Personal Portfolio of Divyesh Balaji — Year 1 Data Science & AI Undergraduate at NTU Singapore." />
-
-  <!-- OpenGraph Meta Tags for Clean Link Previews on LinkedIn / WhatsApp / Telegram -->
-  <meta property="og:title" content="Divyesh Balaji | Data Science & AI Portfolio" />
-  <meta property="og:description" content="Year 1 Data Science & AI Undergraduate at NTU Singapore. Explore my projects, technical toolkit, and academic journey." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://balajidivyesh2308-crypto.github.io/" />
-
-  <!-- Inline SVG Camera Aperture Favicon (Zero external files needed) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Ccircle cx='12' cy='12' r='4' stroke='%236366f1'/%3E%3C/svg%3E" />
 
   <!-- Google Fonts: Space Grotesk (Geometric Sans) + JetBrains Mono (Monospace) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -382,6 +363,17 @@
       <canvas id="neural-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
       <div class="relative z-10 max-w-4xl mx-auto text-center">
+        <!-- Clean Live Status Badge -->
+        <div class="gsap-hero inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md mb-8">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyanGlow opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyanGlow"></span>
+          </span>
+          <span id="hero-status-badge" class="font-mono text-xs tracking-wide text-slate-200">
+            Available for Internships & Research
+          </span>
+        </div>
+
         <!-- Greeting & Full Name -->
         <h1 class="gsap-hero font-display text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.1] mb-4">
           <span id="hero-greeting">Hi, I am Divyesh Balaji</span>
@@ -409,6 +401,7 @@
             </svg>
           </a>
 
+          <a id="hero-linkedin-btn" href="#" target="_blank" rel="noopener noreferrer"
           <a id="hero-linkedin-btn" href="https://www.linkedin.com/in/divyeshbalaji" target="_blank" rel="noopener noreferrer"
              class="px-6 py-3.5 rounded-xl font-mono text-sm text-slate-200 bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-cyanGlow/50 transition-all flex items-center gap-2">
             <svg class="w-4 h-4 text-cyanGlow" fill="currentColor" viewBox="0 0 24 24">
@@ -417,6 +410,7 @@
             <span>LinkedIn</span>
           </a>
 
+          <a id="hero-github-btn" href="#"
           <a id="hero-github-btn" href="https://github.com/balajidivyesh2308-crypto" target="_blank" rel="noopener noreferrer"
              class="px-6 py-3.5 rounded-xl font-mono text-sm text-slate-200 bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-indigoGlow/50 transition-all flex items-center gap-2">
             <svg class="w-4 h-4 text-indigoGlow" fill="currentColor" viewBox="0 0 24 24">
@@ -557,7 +551,7 @@
     </section>
 
     <!-- ==========================================
-         4. FEATURED PROJECTS SHOWCASE (WITH UNIFLOW AI LIVE IN SLOT 01)
+         4. FEATURED PROJECTS SHOWCASE (IN THE LAB / UPCOMING)
          ========================================== -->
     <section id="projects" class="py-24 px-6 max-w-7xl mx-auto">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6 reveal-up">
@@ -646,7 +640,7 @@
   <!-- Footer -->
   <footer class="border-t border-white/10 py-8 px-6 text-center font-mono text-xs text-slate-400 relative z-10">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p>© <span id="footer-year"></span> <span id="footer-name">Divyesh Balaji</span> · Crafted with curiosity & consistency at NTU Singapore.</p>
+      <p>© <span id="footer-year"></span> <span id="footer-name">Divyesh Balaji</span>. Built with Vanilla JS, Tailwind & GSAP.</p>
       <p class="text-slate-400">OPTICAL_UI // 35mm · f/1.4 · ISO 100</p>
     </div>
   </footer>
@@ -667,6 +661,7 @@
       profile: {
         name: "Divyesh Balaji",
         greeting: "Hi, I am Divyesh Balaji",
+        statusBadge: "Available for Internships & Research",
         roles: [
           "Data Science & AI Student @ NTU",
           "Resourceful Problem Solver",
@@ -676,6 +671,7 @@
         tagline: "Calm under pressure and relentlessly resourceful. If a problem doesn't have an obvious solution, I figure out the path, stay consistent, and get the job done.",
         email: "balajidivyesh2308@gmail.com",
         resumeUrl: "#updating-soon",
+        githubUrl: "#github-updating-soon",
         githubUrl: "https://github.com/balajidivyesh2308-crypto",
         linkedinUrl: "https://www.linkedin.com/in/divyeshbalaji"
       },
@@ -717,8 +713,8 @@
             detail: "Developing hands-on fluency in Python, SQL, NumPy, Pandas, Jupyter Notebook, and Git version control."
           },
           {
-            topic: "Student Initiatives & Collaborations",
-            detail: "Open to connecting with fellow builders for data science projects, coding explorations, and student initiatives."
+            topic: "Internships & Undergraduate Research",
+            detail: "Open to connecting for upcoming research projects, student initiatives, and internship opportunities."
           }
         ],
 
@@ -740,14 +736,14 @@
 
       projects: [
         {
-          title: "UniFlow AI",
+          title: "Upcoming Build // Slot 01",
           category: "AI & LLMs",
-          metric: "Featured Build",
-          shortSummary: "An AI-powered academic planning and priority scheduling agent built to turn heavy university coursework into structured daily execution.",
-          hoverDescription: "Designed with a clean web interface, custom mathematical urgency-decay scoring, interactive difficulty sliders, and .ics calendar export.",
-          tags: ["JavaScript", "Node.js", "HTML/CSS", "AI Agent"],
-          liveDemoUrl: "https://balajidivyesh2308-crypto.github.io/uniflow-ai/",
-          sourceCodeUrl: "https://github.com/balajidivyesh2308-crypto/uniflow-ai"
+          metric: "In the Lab",
+          shortSummary: "Currently building foundational skills in Python, NumPy, and Pandas at NTU. First Data Science & AI build coming soon.",
+          hoverDescription: "This slot is reserved for my first Data Science & AI project. Check back soon for live demos, notebooks, and source code.",
+          tags: ["Python", "Pandas", "NumPy", "Jupyter"],
+          liveDemoUrl: "#coming-soon",
+          sourceCodeUrl: "#coming-soon"
         },
         {
           title: "Upcoming Build // Slot 02",
@@ -779,7 +775,7 @@
           highlights: [
             "Year 1 Undergraduate building a strong mathematical and computational foundation.",
             "Semester 1 Core Modules: Calculus, Discrete Mathematics, and Introduction to Computational Thinking.",
-            "Actively exploring data science workflows, coding fundamentals, and student initiatives."
+            "Actively exploring data science workflows, coding fundamentals, and research opportunities."
           ]
         },
         {
@@ -806,9 +802,11 @@
 
       contact: {
         headline: "Let's Connect & Build Together",
-        subtext: "Whether it's about data science collaborations, student projects, coursework discussions, or photography—my inbox is always open.",
+        subtext: "Whether it's about undergraduate research, internship opportunities, data science collaborations, or photography—my inbox is always open.",
         socials: [
           { name: "LinkedIn", url: "https://www.linkedin.com/in/divyeshbalaji" },
+          { name: "Email Direct", url: "mailto:balajidivyesh2308@gmail.com" },
+          { name: "GitHub (Updating Soon)", url: "#github-updating-soon" }
           { name: "GitHub", url: "https://github.com/balajidivyesh2308-crypto" },
           { name: "Email Direct", url: "mailto:balajidivyesh2308@gmail.com" }
         ]
@@ -870,6 +868,7 @@
       // Hero & Nav
       document.getElementById('nav-brand').textContent = PORTFOLIO_DATA.profile.name.toUpperCase();
       document.getElementById('nav-resume-btn').href = PORTFOLIO_DATA.profile.resumeUrl;
+      document.getElementById('hero-status-badge').textContent = PORTFOLIO_DATA.profile.statusBadge;
       document.getElementById('hero-greeting').textContent = PORTFOLIO_DATA.profile.greeting;
       document.getElementById('hero-tagline').textContent = PORTFOLIO_DATA.profile.tagline;
       document.getElementById('hero-github-btn').href = PORTFOLIO_DATA.profile.githubUrl;
@@ -970,11 +969,7 @@
         ? PORTFOLIO_DATA.projects
         : PORTFOLIO_DATA.projects.filter(p => p.category === filterCategory);
 
-      grid.innerHTML = filtered.map((proj, idx) => {
-        const isLiveExternal = proj.liveDemoUrl.startsWith('http');
-        const isSourceExternal = proj.sourceCodeUrl.startsWith('http');
-
-        return `
+      grid.innerHTML = filtered.map((proj, idx) => `
         <article class="glass-card tilt-card group p-7 flex flex-col justify-between min-h-[340px]">
           <span class="af-corner af-tl"></span><span class="af-corner af-tr"></span><span class="af-corner af-bl"></span><span class="af-corner af-br"></span>
           <div class="relative z-10">
@@ -1021,17 +1016,17 @@
 
             <!-- Action Links -->
             <div class="flex items-center justify-between font-mono text-xs">
-              <a href="${proj.liveDemoUrl}" ${isLiveExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="placeholder-check-link text-white hover:text-cyanGlow flex items-center gap-1 transition-colors">
+              <a href="${proj.liveDemoUrl}" class="placeholder-check-link text-white hover:text-cyanGlow flex items-center gap-1 transition-colors">
                 <span>Live Demo</span>
                 <span>↗</span>
               </a>
-              <a href="${proj.sourceCodeUrl}" ${isSourceExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="placeholder-check-link text-slate-400 hover:text-indigoGlow flex items-center gap-1 transition-colors">
+              <a href="${proj.sourceCodeUrl}" class="placeholder-check-link text-slate-400 hover:text-indigoGlow flex items-center gap-1 transition-colors">
                 <span>&lt;/&gt; Source Code</span>
               </a>
             </div>
           </div>
         </article>
-      `}).join('');
+      `).join('');
 
       init3DTiltAndSpotlight();
       bindPlaceholderLinks();
@@ -1114,7 +1109,7 @@
         }
 
         for (let i = 0; i < particles.length; i++) {
-          const p = particles.at(i);
+          const p = particles[i];
           p.x += p.vx;
           p.y += p.vy;
 
@@ -1127,7 +1122,7 @@
           ctx.fill();
 
           for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles.at(j);
+            const p2 = particles[j];
             const dx = p.x - p2.x;
             const dy = p.y - p2.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
@@ -1184,7 +1179,7 @@
       let isDeleting = false;
 
       function tick() {
-        const currentRole = roles.at(roleIdx);
+        const currentRole = roles[roleIdx];
         if (isDeleting) {
           charIdx--;
           el.textContent = currentRole.substring(0, charIdx);
@@ -1343,13 +1338,6 @@
       init3DTiltAndSpotlight();
       initScrollAnimations();
       initInteractions();
-
-      // Personalization Console Greeting for Developers / Recruiters
-      console.log(
-        "%c [OPTICAL_UI // DIVYESH BALAJI] %c Welcome to my portfolio! Built with curiosity, consistency, and clean code at NTU DSAI.",
-        "background:#6366f1; color:#ffffff; font-family:monospace; font-weight:bold; padding:4px 8px; border-radius:4px;",
-        "color:#06b6d4; font-family:monospace;"
-      );
     });
   </script>
 </body>
