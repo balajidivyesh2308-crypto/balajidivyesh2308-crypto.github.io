@@ -83,7 +83,7 @@
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      transition: background-color 0.35s ease, color 0.35s ease;
+      transition: background-color 0.65s cubic-bezier(0.22, 1, 0.36, 1), color 0.65s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* Subtle Rule-of-Thirds Optical Grid */
@@ -105,7 +105,7 @@
       border-color: var(--hud-color);
       pointer-events: none;
       z-index: 40;
-      transition: border-color 0.35s ease;
+      transition: border-color 0.5s ease;
     }
 
     /* Adaptive Typography & Borders in Light Mode */
@@ -137,7 +137,7 @@
       z-index: -1;
       pointer-events: none;
       opacity: var(--ambient-opacity);
-      transition: opacity 0.35s ease;
+      transition: opacity 0.65s ease;
     }
 
     /* Frosted Glassmorphism Card with Spotlight & Autofocus Brackets */
@@ -149,7 +149,7 @@
       border: 1px solid var(--glass-border);
       border-radius: 1.25rem;
       overflow: hidden;
-      transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      transition: background-color 0.65s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.65s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
       transform-style: preserve-3d;
       will-change: transform;
     }
@@ -233,7 +233,6 @@
       border: 1px solid var(--pill-border);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     .skill-pill:hover {
       background: rgba(99, 102, 241, 0.15);
       border-color: var(--accent-cyan);
@@ -269,6 +268,9 @@
 </head>
 
 <body class="antialiased selection:bg-indigoGlow/30 selection:text-white relative">
+
+  <!-- Subtle Optical Silk Wave & Whisper Bokeh Theme Transition Canvas -->
+  <canvas id="theme-transition-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[100]" aria-hidden="true"></canvas>
 
   <!-- Subtle Rule-of-Thirds Viewfinder Grid Overlay -->
   <div class="rule-of-thirds-grid" aria-hidden="true"></div>
@@ -355,6 +357,7 @@
   </header>
 
   <main class="relative z-10">
+
     <!-- ==========================================
          2. HERO SECTION (NEURAL CONSTELLATION + DEPTH-OF-FIELD BOKEH)
          ========================================== -->
@@ -453,7 +456,6 @@
               <!-- Populated from PORTFOLIO_DATA -->
             </p>
           </div>
-
           <div class="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-slate-400">
             <span id="bento-university"><!-- Populated from PORTFOLIO_DATA --></span>
             <span id="bento-location" class="text-cyanGlow"><!-- Populated from PORTFOLIO_DATA --></span>
@@ -625,6 +627,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
@@ -665,13 +668,11 @@
         githubUrl: "https://github.com/divyesh-balaji",
         linkedinUrl: "https://www.linkedin.com/in/divyeshbalaji"
       },
-
       aboutBento: {
         bioHeadline: "Year 1 Data Science & AI Undergraduate at NTU",
         bioBody: "I'm a first-year Data Science and Artificial Intelligence undergraduate at Nanyang Technological University (NTU). What drives me most is the process of turning unknowns into working solutions—approaching unfamiliar challenges with patience, persistence, and steady consistency until the work is done. Outside of math and code, my interest in photography trains me to slow down, spot subtle patterns, and frame details with clarity. Currently exploring DSA.",
         university: "Nanyang Technological University (NTU) · Year 1 DSAI",
         location: "Singapore (SGT / UTC+8)",
-
         skills: {
           aiMlLlms: [
             "Computational Thinking",
@@ -692,7 +693,6 @@
             "Git (Learning)"
           ]
         },
-
         currentlyExploring: [
           {
             topic: "Semester 1 Core Foundations @ NTU",
@@ -707,7 +707,6 @@
             detail: "Open to connecting for upcoming research projects, student initiatives, and internship opportunities."
           }
         ],
-
         certifications: [
           {
             title: "Introduction to Data Science & AI",
@@ -723,7 +722,6 @@
           }
         ]
       },
-
       projects: [
         {
           title: "Upcoming Build // Slot 01",
@@ -756,7 +754,6 @@
           sourceCodeUrl: "#coming-soon"
         }
       ],
-
       timeline: [
         {
           period: "2026 – 2030",
@@ -789,7 +786,6 @@
           ]
         }
       ],
-
       contact: {
         headline: "Let's Connect & Build Together",
         subtext: "Whether it's about undergraduate research, internship opportunities, data science collaborations, or photography—my inbox is always open.",
@@ -802,21 +798,35 @@
     };
 
     /* =========================================================================
-       0. DARK / LIGHT THEME TOGGLE CONTROLLER
+       0. DARK / LIGHT THEME TOGGLE CONTROLLER (SUBTLE SILK WAVE & BOKEH)
        ========================================================================= */
     function initThemeToggle() {
       const htmlEl = document.documentElement;
       const toggleBtn = document.getElementById('theme-toggle-btn');
       const sunIcon = document.getElementById('theme-icon-sun');
       const moonIcon = document.getElementById('theme-icon-moon');
+      const transCanvas = document.getElementById('theme-transition-canvas');
+      const transCtx = transCanvas.getContext('2d');
+
+      let isTransitioning = false;
+
+      function resizeTransCanvas() {
+        transCanvas.width = window.innerWidth;
+        transCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeTransCanvas);
+      resizeTransCanvas();
 
       const savedTheme = localStorage.getItem('portfolio_theme') || 'dark';
       applyTheme(savedTheme);
 
       toggleBtn.addEventListener('click', () => {
+        if (isTransitioning) return;
         const nextTheme = htmlEl.classList.contains('light') ? 'dark' : 'light';
-        applyTheme(nextTheme);
-        localStorage.setItem('portfolio_theme', nextTheme);
+        const btnRect = toggleBtn.getBoundingClientRect();
+        const originX = btnRect.left + btnRect.width / 2;
+        const originY = btnRect.top + btnRect.height / 2;
+        playSubtleOpticalTransition(nextTheme, originX, originY);
       });
 
       function applyTheme(theme) {
@@ -831,6 +841,99 @@
           sunIcon.classList.remove('hidden');
           moonIcon.classList.add('hidden');
         }
+      }
+
+      function playSubtleOpticalTransition(targetTheme, ox, oy) {
+        isTransitioning = true;
+        const w = transCanvas.width;
+        const h = transCanvas.height;
+        const maxRadius = Math.hypot(Math.max(ox, w - ox), Math.max(oy, h - oy)) * 1.1;
+        const toLight = targetTheme === 'light';
+
+        const softMotes = Array.from({ length: 10 }, (_, i) => {
+          const angle = (i / 10) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+          const distFactor = 0.25 + Math.random() * 0.55;
+          return {
+            angle,
+            distFactor,
+            radius: Math.random() * 28 + 16,
+            color: i % 2 === 0 ? '6, 182, 212' : '99, 102, 241'
+          };
+        });
+
+        const duration = 900;
+        const startTime = performance.now();
+
+        applyTheme(targetTheme);
+        localStorage.setItem('portfolio_theme', targetTheme);
+
+        function easeOutCubic(x) {
+          return 1 - Math.pow(1 - x, 3);
+        }
+
+        function renderSubtleFrame(now) {
+          const elapsed = now - startTime;
+          const t = Math.min(elapsed / duration, 1);
+          const easeT = easeOutCubic(t);
+
+          transCtx.clearRect(0, 0, w, h);
+
+          const envelope = Math.sin(t * Math.PI);
+          const currentRadius = Math.max(10, easeT * maxRadius);
+          const innerRadius = Math.max(1, currentRadius * 0.45);
+
+          const waveGrad = transCtx.createRadialGradient(ox, oy, innerRadius, ox, oy, currentRadius);
+          if (toLight) {
+            waveGrad.addColorStop(0, `rgba(248, 250, 252, 0)`);
+            waveGrad.addColorStop(0.55, `rgba(6, 182, 212, ${0.08 * envelope})`);
+            waveGrad.addColorStop(0.82, `rgba(99, 102, 241, ${0.14 * envelope})`);
+            waveGrad.addColorStop(1, `rgba(248, 250, 252, 0)`);
+          } else {
+            waveGrad.addColorStop(0, `rgba(10, 10, 15, 0)`);
+            waveGrad.addColorStop(0.55, `rgba(99, 102, 241, ${0.10 * envelope})`);
+            waveGrad.addColorStop(0.82, `rgba(6, 182, 212, ${0.14 * envelope})`);
+            waveGrad.addColorStop(1, `rgba(10, 10, 15, 0)`);
+          }
+
+          transCtx.save();
+          transCtx.fillStyle = waveGrad;
+          transCtx.fillRect(0, 0, w, h);
+
+          transCtx.beginPath();
+          transCtx.arc(ox, oy, currentRadius * 0.82, 0, Math.PI * 2);
+          transCtx.strokeStyle = toLight
+            ? `rgba(6, 182, 212, ${0.22 * envelope})`
+            : `rgba(99, 102, 241, ${0.24 * envelope})`;
+          transCtx.lineWidth = 0.8;
+          transCtx.stroke();
+
+          softMotes.forEach(m => {
+            const r = currentRadius * m.distFactor;
+            const mx = ox + Math.cos(m.angle) * r;
+            const my = oy + Math.sin(m.angle) * r;
+
+            const moteGrad = transCtx.createRadialGradient(mx, my, 1, mx, my, m.radius);
+            moteGrad.addColorStop(0, `rgba(${m.color}, ${0.12 * envelope})`);
+            moteGrad.addColorStop(0.7, `rgba(${m.color}, ${0.04 * envelope})`);
+            moteGrad.addColorStop(1, `rgba(${m.color}, 0)`);
+
+            transCtx.beginPath();
+            transCtx.arc(mx, my, m.radius, 0, Math.PI * 2);
+            transCtx.fillStyle = moteGrad;
+            transCtx.fill();
+          });
+
+          transCtx.restore();
+
+          if (t < 1) {
+            requestAnimationFrame(renderSubtleFrame);
+          } else {
+            transCtx.clearRect(0, 0, w, h);
+            isTransitioning = false;
+          }
+        }
+
+        requestAnimationFrame(renderSubtleFrame);
       }
     }
 
@@ -988,6 +1091,7 @@
             <p class="text-sm text-slate-300 mb-3">
               ${proj.shortSummary}
             </p>
+
             <!-- Hover-Reveal Extended Description -->
             <div class="max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100 overflow-hidden transition-all duration-500 ease-out">
               <p class="text-xs text-slate-400 pt-2 border-t border-white/10 leading-relaxed">
@@ -1027,7 +1131,6 @@
       const canvas = document.getElementById('neural-canvas');
       const ctx = canvas.getContext('2d');
       let width, height, particles, bokehOrbs;
-
       const mouse = { x: null, y: null, radius: 160 };
 
       window.addEventListener('mousemove', (e) => {
@@ -1129,6 +1232,7 @@
             const dxMouse = p.x - mouse.x;
             const dyMouse = p.y - mouse.y;
             const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
             if (distMouse < mouse.radius) {
               ctx.beginPath();
               ctx.strokeStyle = `rgba(6, 182, 212, ${0.45 * (1 - distMouse / mouse.radius)})`;
@@ -1168,6 +1272,7 @@
 
       function tick() {
         const currentRole = roles[roleIdx];
+
         if (isDeleting) {
           charIdx--;
           el.textContent = currentRole.substring(0, charIdx);
@@ -1302,7 +1407,6 @@
 
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('.nav-link');
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
