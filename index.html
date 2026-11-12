@@ -651,6 +651,7 @@
       profile: {
         name: "Divyesh Balaji",
         greeting: "Hi, I am Divyesh Balaji",
+        navBrand: "CCDS // 30'",
         statusBadge: "Available for Internships & Research",
         roles: [
           "Data Science & AI Student @ NTU",
@@ -853,7 +854,7 @@
        ========================================================================= */
     function renderPortfolioData() {
       // Hero & Nav
-      document.getElementById('nav-brand').textContent = PORTFOLIO_DATA.profile.name.toUpperCase();
+      document.getElementById('nav-brand').textContent = PORTFOLIO_DATA.profile.navBrand || "CCDS // 30'";
       document.getElementById('nav-resume-btn').href = PORTFOLIO_DATA.profile.resumeUrl;
       document.getElementById('hero-status-badge').textContent = PORTFOLIO_DATA.profile.statusBadge;
       document.getElementById('hero-greeting').textContent = PORTFOLIO_DATA.profile.greeting;
