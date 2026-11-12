@@ -24,4 +24,4 @@ I like working through problems where the answer isn't immediately obvious—bre
 
 ---
 
-*Check out my full portfolio at [balajidivyesh2308-crypto.github.io](https://balajidivyesh2308-crypto.github.io).*
+*Check out my full portfolio at [divyesh-balaji.github.io](https://divyesh-balaji.github.io).*
